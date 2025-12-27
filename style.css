@@ -1,0 +1,75 @@
+body {
+    margin-top: 6%;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1{
+    text-align:  center;
+    color: #537895;
+    margin-bottom: 5%;
+}
+#inputForm p{
+    text-align: center;
+    font-size: 20px;
+    color: #09203f;
+    width: 900px;
+    margin: 20px auto;
+    background-color: #defcf9;
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 15px;
+
+
+}
+#inputForm input{
+    display: block;
+    margin: 35px auto;
+    padding: 20px;
+    width: 400px;
+    font-size: 15px;
+    background-color: #f9f9f9;
+    border-radius: 15px;
+}
+#inputForm input:focus{
+     outline: none;
+    border-color: #defcf9;
+    box-shadow: 0 0 5px #5a9bd1;
+   
+}
+#inputForm button {
+    background-color: #e4f1fe;
+    color: black ;
+    display: block;
+    margin: 15px auto;
+    padding: 15px 30px;
+    border-radius: 15px;
+    font-size: 20px;
+    transform: scale(0.5) ease-in-out;
+}
+#inputForm button:hover{
+   background: linear-gradient(to top, #09203f 0%, #537895 100%);
+   color: #000;
+   transition:  0.5s;
+   font-size: 22px;
+}
+#ai-output {
+    margin-top: 20px;
+    padding: 15px;
+
+}
+.ai-card{
+    background-color: #7faae3;
+    padding: 15px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+.ai-card h4{
+    margin-bottom: 6px;
+    color:#09203f
+}
+.ai-card p{
+    color: #000;
+    line-height:  1.5;
+}
