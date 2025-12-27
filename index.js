@@ -18,7 +18,7 @@ function analyzeForm(event) {
   if (!subject || !goal || !duration) {
     message.textContent = "Please enter all the fields.";
      
-    return; // ⬅️ STOP execution
+    return; 
    
   }
 
@@ -93,7 +93,7 @@ fetch(apiUrl)
     return response.json();
   })
   .then((data) => {
-    console.log(data); // log the entire response for debugging
+    console.log(data); 
     renderResponse(data.answer);
 
   })
