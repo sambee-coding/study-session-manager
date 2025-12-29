@@ -77,9 +77,10 @@ function renderResponse(text){
            card.appendChild(titles);
            lines.slice(1).forEach(line =>{
             var paragraphs = document.createElement("div");
-            paragraphs.textContent = line.replace("-", " ").trim();
+            paragraphs.textContent = line.replace("-","").trim();
           card.appendChild(paragraphs);
             outPutDiv.appendChild(card);
+            message.textContent = "analysis completed "
            
         });
       
