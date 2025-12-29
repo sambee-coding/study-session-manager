@@ -70,20 +70,26 @@ function renderResponse(text){
     sections.forEach(section =>{
         const lines = section.split("\n");
         if(lines.length < 2 ) return;
-        const titles = document.createElement("h4");
-        titles.textContent = lines[0];
-        const content = document.createElement("p");
-        content.textContent = lines.slice(1).join(":").trim();
         const card = document.createElement("div");
         card.classList.add("ai-card");
-        card.appendChild(titles);
-        card.appendChild(content);
-        outPutDiv.appendChild(card);
+        const titles = document.createElement("h4");
+        titles.textContent = lines[0];
+           card.appendChild(titles);
+           lines.slice(1).forEach(line =>{
+            var paragraphs = document.createElement("div");
+            paragraphs.textContent = line.replace("-", " ").trim();
+          card.appendChild(paragraphs);
+            outPutDiv.appendChild(card);
+           
+        });
+      
     });
 }
   const encodedPrompt = encodeURIComponent(prompt);
 
   const apiUrl = `https://api.shecodes.io/ai/v1/generate?prompt=${encodedPrompt}&key=${apiKey}`;
+  
+
 
 fetch(apiUrl)
   .then((response) => {
