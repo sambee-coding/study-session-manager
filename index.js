@@ -4,29 +4,39 @@ const message = document.querySelector("p");
 
 form.addEventListener("submit", analyzeForm);
 
+function getFormData(form){
+    return {
+        subject:form[0].value.trim(),
+        goal:form[1].value.trim(),
+        duration:form[2].value.trim()
+    };
+}
+function isValidFormData({subject,goal,duration}){
+    return subject && goal && duration;
+}
 function analyzeForm(event) {
   event.preventDefault();
   message.style.display  = "block";
   const aioutPutDiv = document.getElementById('ai-output');
   aioutPutDiv.style.display = 'block';
 
-  const subject = event.target[0].value.trim();
-  const goal = event.target[1].value.trim();
-  const duration = event.target[2].value.trim();
- 
-  
-  if (!subject || !goal || !duration) {
+  const formData = getFormData(event.target);
+
+  if (!isValidFormData(formData)) {
     message.textContent = "Please enter all the fields.";
      
     return; 
    
   }
+    message.textContent = "Analyzing your study session... ⏳";
+   const prompt = buildPrompt(formData);
+   fetchAISuggestions(prompt);
+}
 
-  message.textContent = "Analyzing your study session... ⏳";
 
-  const apiKey = "2faae9d4e47d0b0a09a9to05afdf381d";
-
- const prompt = `
+ 
+function buildPrompt({subject,goal,duration}){
+ return `
 You are a productivity coach.
 
 Analyze the study session below and give clear, structured suggestions.
@@ -61,7 +71,8 @@ DISTRACTION HANDLING:
 
 MOTIVATION:
 (write 1 short sentence)
-`
+`;
+}
 function renderResponse(text){
 
     const outPutDiv = document.getElementById("ai-output");
@@ -102,28 +113,27 @@ function renderResponse(text){
    
       
     });
-         message.textContent = "analysis completed ";
+      
 }
+ function fetchAISuggestions(prompt) {
+  const apiKey = "2faae9d4e47d0b0a09a9to05afdf381d";
+
   const encodedPrompt = encodeURIComponent(prompt);
-
   const apiUrl = `https://api.shecodes.io/ai/v1/generate?prompt=${encodedPrompt}&key=${apiKey}`;
-  
 
-
-fetch(apiUrl)
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error("API response was not ok");
-    }
-    return response.json();
-  })
-  .then((data) => {
-    console.log(data); 
-    renderResponse(data.answer);
-
-  })
-  .catch((error) => {
-    console.error(error);
-    message.textContent = "Something went wrong. Please try again.";
-  })
-};
+  fetch(apiUrl)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("API response was not ok");
+      }
+      return response.json();
+    })
+    .then(data => {
+      renderResponse(data.answer);
+      message.textContent = "Finished analyzing your inputs."
+    })
+    .catch(error => {
+      console.error(error);
+      message.textContent = "Something went wrong. Please try again.";
+    });
+}
