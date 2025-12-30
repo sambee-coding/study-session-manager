@@ -1,0 +1,10 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #e7eaf6;
+}
+.grid{
+    display: grid;
+    grid-template-columns: repeat(400px,3);
+    grid-template-rows: repeat(500pc,4);
+}

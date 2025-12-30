@@ -78,11 +78,17 @@ function renderResponse(text){
            lines.slice(1).forEach(line =>{
             var paragraphs = document.createElement("div");
             paragraphs.textContent = line.replace("-","").trim();
+            paragraphs.classList.add("fade-in");
           card.appendChild(paragraphs);
             outPutDiv.appendChild(card);
-            message.textContent = "analysis completed "
+           
+            setTimeout(() => {
+        p.classList.add("show"); // triggers the CSS transition
+      }, index * 300); 
+           
            
         });
+        message.textContent = "analysis completed "
       
     });
 }
