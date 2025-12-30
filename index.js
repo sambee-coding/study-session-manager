@@ -65,32 +65,44 @@ MOTIVATION:
 function renderResponse(text){
 
     const outPutDiv = document.getElementById("ai-output");
-    outPutDiv.innerHTML = "";
+    outPutDiv.innerHTML = ""; //this will clear the old content
+
+    //spliting the response into sections
     const sections = text.split("\n\n");
-    sections.forEach(section =>{
+
+        sections.forEach(section =>{
         const lines = section.split("\n");
         if(lines.length < 2 ) return;
+
+        //creatng on card per section
         const card = document.createElement("div");
         card.classList.add("ai-card");
+
+        //creating and adding title
         const titles = document.createElement("h4");
         titles.textContent = lines[0];
            card.appendChild(titles);
-           lines.slice(1).forEach(line =>{
-            var paragraphs = document.createElement("div");
-            paragraphs.textContent = line.replace("-","").trim();
-            paragraphs.classList.add("fade-in");
-          card.appendChild(paragraphs);
-            outPutDiv.appendChild(card);
+           //create paragraphs with animation
+           lines.slice(1).forEach((line,index) =>{
+            var contianer = document.createElement("div");
+            contianer.textContent = line.replace("-","").trim();
+            contianer.classList.add("fade-in"); //hidden intially
+
+            card.appendChild(contianer);
+         
            
+            //allowing the animation to start showing
             setTimeout(() => {
-        p.classList.add("show"); // triggers the CSS transition
+        contianer.classList.add("show"); // triggers the CSS transition
       }, index * 300); 
            
            
         });
-        message.textContent = "analysis completed "
+           outPutDiv.appendChild(card);
+   
       
     });
+         message.textContent = "analysis completed ";
 }
   const encodedPrompt = encodeURIComponent(prompt);
 
