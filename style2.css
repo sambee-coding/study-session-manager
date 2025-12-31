@@ -3,8 +3,60 @@ body {
     padding: 0;
     background-color: #e7eaf6;
 }
-.grid{
-    display: grid;
-    grid-template-columns: repeat(400px,3);
-    grid-template-rows: repeat(500pc,4);
+.focus-contianer{
+    display: flex;
+    /* we can actually make the felx direction in the way we want using the property flex-direction*/
+    flex-direction: row;/*the default one*/
+   justify-content: space-evenly;
+    align-items: center;
+    height: 100vh;/* we need to set this inorder to get the full height of the borweser otherwise the flex will think the hight in terms of the div tag only(the childersens)*/
+}
+
+ .Pomodoro-panel {
+    width: 30%;
+    border: 3px solid skyblue;
+    border-radius: 15px;
+    padding: 20px 30px;
+    font-size: 80%;
+    min-height: 50vh;
+}
+.lofi-panel{
+    width: 30%;
+    min-height: 50vh;
+    font-size: 80%;
+    border: 3px solid skyblue;
+    border-radius: 15px;
+    padding: 15px 30px;
+
+}
+ .container-display{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:2em;
+
+}
+.container-display h2{
+    font-size:35px;
+}
+.container-display p {
+    font-size: 30px;
+}
+.container-display button{
+    padding: 20px 30px;
+    border-radius: 15px;
+    background-color: #e4f1fe;
+    transition: 0.3s ease-in-out;
+}
+.container-display button:hover{
+    transform: scale(0.9);
+}
+.Pomodoro-panel .container-display button{
+    background-color: #a2a8d3;
+}
+.btns{
+    display: flex;
+    flex-direction: row;
+    gap:1em;
 }
