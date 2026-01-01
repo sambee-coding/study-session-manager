@@ -137,3 +137,55 @@ function renderResponse(text){
       message.textContent = "Something went wrong. Please try again.";
     });
 }
+
+//the js code for the pomodoro.html page
+
+let timer; // will store the setInterval reference
+let isRunning = false;
+let currentMinutes = 25;
+let currentSeconds = 0;
+
+
+const startBtn = document.getElementById("startBtn");
+const breakBtn = document.getElementById("BreakBtn");
+const resetBtn = document.getElementById("resetBtn");
+const time = document.getElementById("timer");
+
+//function to update display
+function updateDisplay() {
+    display.textContent = `${String(currentMinutes).padStart(2, '0')}:${String(currentSeconds).padStart(2, '0')}`;
+}
+startBtn.addEventListener("click" , startSession);
+breakBtn.addEventListener("click" , startBreak);
+resetBtn.addEventListener("click" , resetTimer);
+
+function startSession(){
+    if (isRunning) return; 
+    isRunning = true;
+
+    timer = setInterval(() => {
+        if (currentSeconds === 0) {
+            if (currentMinutes === 0) {
+                clearInterval(timer);
+                isRunning = false;
+                alert("Time's up!");
+                return;
+            }
+            currentMinutes--;
+            currentSeconds = 59;
+        } else {
+            currentSeconds--;
+        }
+        updateDisplay();
+    }, 1000);
+}
+
+function startBreak() {
+    clearInterval(timer);
+    isRunning = false;
+    currentMinutes = 5; 
+    currentSeconds = 0;
+    updateDisplay();
+}
+
+
