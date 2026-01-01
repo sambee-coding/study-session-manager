@@ -13,10 +13,7 @@ body {
     font-size: 25px;
     transition: 0.2ms ease-out;
 }
-.navigations a:hover{
-    font-size: 28px;
- 
-}
+
 
 h1{
     text-align:  center;
