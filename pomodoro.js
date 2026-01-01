@@ -52,7 +52,22 @@ function startBreak() {
     isRunning = false;
     currentMinutes = 5; 
     currentSeconds = 0;
-    updateDisplay();
+      timer = setInterval(() => {
+        if (currentSeconds === 0) {
+            if (currentMinutes === 0) {
+                clearInterval(timer);
+                isRunning = false;
+             playAlarm();
+                return;
+            }
+            currentMinutes--;
+            currentSeconds = 59;
+        } else {
+            currentSeconds--;
+        }
+        updateDisplay();
+    }, 1000);
+    
 }
 
 function resetTimer(){
