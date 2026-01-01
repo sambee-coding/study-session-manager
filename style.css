@@ -3,6 +3,20 @@ body {
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
 }
+.navigations a{
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 40px;
+    margin-top:0;
+    text-decoration: none;
+    color: #5a9bd1;
+    font-size: 25px;
+    transition: 0.2ms ease-out;
+}
+.navigations a:hover{
+    font-size: 28px;
+ 
+}
 
 h1{
     text-align:  center;
